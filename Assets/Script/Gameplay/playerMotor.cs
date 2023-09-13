@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using static Unity.Burst.Intrinsics.X86;
 
 [RequireComponent(typeof(Rigidbody))]
 public class playerMotor : MonoBehaviour
@@ -10,12 +11,15 @@ public class playerMotor : MonoBehaviour
     private Camera cam;
 
     public bool inverseCamera = false;
-
+    public bool doubleJump = true;
+    public bool onTheGround = true;
+    public bool secondJump = true;
 
     private Vector3 velocity;
     private Vector3 rotation;
     private Vector3 camRotation;
     private Rigidbody rb;
+
 
 
     private void Start(){
@@ -33,12 +37,36 @@ public class playerMotor : MonoBehaviour
         camRotation = _camRotation;
     }
 
+
+
     public void jump(float _jumpForce)
     {
-        rb.AddForce(new Vector3(0,_jumpForce,0), ForceMode.Impulse);
+        if(onTheGround == false && doubleJump == true && secondJump == true)
+        {
+            onTheGround = false;
+            secondJump = false;
+            rb.AddForce(new Vector3(0, _jumpForce, 0), ForceMode.Impulse);
+            Debug.Log("<color=red>DoubleJump</color>");
+
+        }
+        if (onTheGround == true)
+        {
+            rb.AddForce(new Vector3(0, _jumpForce, 0), ForceMode.Impulse);
+            onTheGround = false;
+        }
+        
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            onTheGround = true;
+            secondJump = true;
+            Debug.Log("<color=red>secondJumpLoad</color>");
 
+        }
+    }
 
     private void FixedUpdate() {
         PerformMovement();

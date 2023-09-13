@@ -29,6 +29,8 @@ public class playerController : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("<b>init playerController</b>");
+
         motor = GetComponent<playerMotor>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -86,14 +88,8 @@ public class playerController : MonoBehaviour
             Debug.Log(saveX);
             sencibilityX = 0f;
         }
-        if(lockMouseX == false)
-        {
-            
-
+        if(lockMouseX == false){
             sencibilityX = saveX;
-            Debug.Log(saveX);
-       
-
         }
 
         if (lockMouseY == true)
@@ -104,7 +100,6 @@ public class playerController : MonoBehaviour
         if(lockMouseY == false)
         {
             sencibilityY = saveY;
-            Debug.Log(saveY);
         }
 
 
