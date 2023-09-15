@@ -29,7 +29,7 @@ public class playerController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("<b>init playerController</b>");
+        Debug.Log("<b><color=green>init playerController</color></b>");
 
         motor = GetComponent<playerMotor>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -116,9 +116,9 @@ public class playerController : MonoBehaviour
 
         float xRot = Input.GetAxisRaw("Mouse Y");
 
-        Vector3 camRota = new Vector3(xRot, 0, 0) * sencibilityY;
+        float camRotaX = xRot * sencibilityY;
       
-        motor.rotateCamera(camRota);
+        motor.rotateCamera(camRotaX);
         #endregion
 
 

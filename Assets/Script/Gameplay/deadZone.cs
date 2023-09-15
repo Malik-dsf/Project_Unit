@@ -12,6 +12,7 @@ public class deadZone : MonoBehaviour
     private void Start()
     {
         respawnPosition = spawn.transform.position;
+        Debug.Log("<b><color=red>init Deadzone </color></b>" + this.gameObject.name);
     }
 
     private void OnTriggerEnter(Collider other)

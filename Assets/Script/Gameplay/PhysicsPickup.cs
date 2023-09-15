@@ -19,13 +19,13 @@ public class PhysicsPickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("<b><color=green>init PhisicsPickup </color></b>");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.E)){
+        if(Input.GetKeyUp(KeyCode.Mouse0)){
 
             if (CurrentObject)
             {

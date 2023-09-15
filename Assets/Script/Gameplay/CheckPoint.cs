@@ -12,6 +12,8 @@ public class CheckPoint : MonoBehaviour
     private void Start()
     {
         deathzone = GameObject.Find("Deathzone").GetComponent<deadZone>();
+        Debug.Log("<b><color=red>init deadzone </color></b>" + this.gameObject.name);
+
     }
 
 

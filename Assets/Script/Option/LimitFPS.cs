@@ -11,29 +11,30 @@ public class LimitFPS : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(Vsync == true)
-        {
-            illimitedFPS = false;
-            Application.targetFrameRate = Screen.currentResolution.refreshRate;
-        }
-        if(Vsync == false)
-        {
-            if (illimitedFPS == true)
-            {
-                FPS = -1;
-            }
-            Application.targetFrameRate = FPS;
-
-        }
-        else
-        {
-            Debug.LogError("pb de FrameRate");
-        }
+        FPSIllimited();
+    }
 
 
-
+    public void VsyncOption()
+    {
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
+        Debug.Log("<b><color=green>Vsync = selected </color></b>");
 
     }
 
-    
+    public void FPSfixe()
+    {
+        Application.targetFrameRate = FPS;
+        Debug.Log("<b><color=green>FPS is fixed in </color></b>" + FPS);
+
+    }
+
+    public void FPSIllimited()
+    {
+        Application.targetFrameRate = -1;
+        Debug.Log("<b><color=green>FPS is illimited </color></b>");
+
+    }
+
+
 }

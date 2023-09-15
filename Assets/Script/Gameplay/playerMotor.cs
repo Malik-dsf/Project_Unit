@@ -15,15 +15,40 @@ public class playerMotor : MonoBehaviour
     public bool onTheGround = true;
     public bool secondJump = true;
 
+
+    
+
     private Vector3 velocity;
     private Vector3 rotation;
-    private Vector3 camRotation;
+    private float camRotationX = 0f;
+    private float currentCamRotationX = 0f;
     private Rigidbody rb;
+
+    public float cameraRotationLimit = 88f;
 
 
 
     private void Start(){
+        Debug.Log("<b><color=red>init playerMotor</color></b>");
         rb = GetComponent<Rigidbody>();
+        inverseCamera = false;
+
+    }
+
+
+    public void reversCam()
+    {
+        if (inverseCamera == true)
+        {
+            inverseCamera = false;
+        }
+        if (inverseCamera == false)
+        {
+            inverseCamera = true;
+        }
+
+
+
     }
 
     public void move(Vector3 _velo){
@@ -32,9 +57,9 @@ public class playerMotor : MonoBehaviour
     public void rotate(Vector3 _rotation){
         rotation = _rotation;
     }
-    public void rotateCamera(Vector3 _camRotation)
+    public void rotateCamera(float _camRotationX)
     {
-        camRotation = _camRotation;
+        camRotationX = _camRotationX;
     }
 
 
@@ -46,7 +71,7 @@ public class playerMotor : MonoBehaviour
             onTheGround = false;
             secondJump = false;
             rb.AddForce(new Vector3(0, _jumpForce, 0), ForceMode.Impulse);
-            Debug.Log("<color=red>DoubleJump</color>");
+            Debug.Log("DoubleJump");
 
         }
         if (onTheGround == true)
@@ -61,9 +86,9 @@ public class playerMotor : MonoBehaviour
     {
         if (collision.gameObject.layer == 6)
         {
+            StartCoroutine("wait");
             onTheGround = true;
             secondJump = true;
-            Debug.Log("<color=red>secondJumpLoad</color>");
 
         }
     }
@@ -83,16 +108,32 @@ public class playerMotor : MonoBehaviour
         
         if(inverseCamera == true)
         {
-            rb.MoveRotation(rb.rotation * Quaternion.Euler(-rotation));
-            cam.transform.Rotate(camRotation);
+
+
+            rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
+            currentCamRotationX += camRotationX;
+            currentCamRotationX = Mathf.Clamp(currentCamRotationX, -cameraRotationLimit, cameraRotationLimit);
+
+            cam.transform.localEulerAngles = new Vector3(currentCamRotationX, 0f, 0f);
 
         }
         else
         {
             rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
-            cam.transform.Rotate(-camRotation);
+            currentCamRotationX -= camRotationX;
+            currentCamRotationX = Mathf.Clamp(currentCamRotationX, -cameraRotationLimit, cameraRotationLimit);
+
+            cam.transform.localEulerAngles = new Vector3(currentCamRotationX, 0f, 0f);
+
         }
     }
 
 
+    private IEnumerator wait()
+    {
+        yield return new WaitForSeconds(1);
+        Debug.Log("<color=blue>second Jump is ready</color>");
+        
+
+    }
 }
