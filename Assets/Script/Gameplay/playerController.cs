@@ -8,7 +8,9 @@ using static Unity.Burst.Intrinsics.X86;
 public class playerController : MonoBehaviour
 {
     
-    public float speed = 10f;
+    public float speed;
+    public float walkSpeed = 7.5f;
+    public float runSpeed = 10f;
 
 
     public float sencibilityX = 5f;
@@ -57,7 +59,14 @@ public class playerController : MonoBehaviour
 
         //course
         if(running == true){
-        Debug.Log("Run");
+            if(Input.GetKey(KeyCode.LeftShift))
+            {
+                Running();
+            }
+            else
+            {
+                speed = walkSpeed;
+            }
 
         }
 
@@ -122,5 +131,15 @@ public class playerController : MonoBehaviour
         #endregion
 
 
+    }
+
+
+    private void Running()
+    {
+        speed += 1;
+        if(speed >= runSpeed)
+        {
+            speed = runSpeed;
+        }
     }
 }

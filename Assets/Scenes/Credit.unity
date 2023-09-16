@@ -763,10 +763,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "X.studio present :\n\n\n\nProject - SIO\n\n\n\nDevlopper : \nMalik Desenfant\n\n\n\nGraphics
-    :\nMalik Desnfant\n\n\nSound design :\nMalik Desenfant\n\n\nTranslate :\nMargot
-    Colas\n\nSoftware used :\nUnity\nBlender\nAudacity\nGithub\n\n\nProps used :\n\n\n\n\n\n-Special
-    thank's-\nBinouh18\nDamokless\nZef\nThecharp\nWrench\nMargot \n\n\n\n\n"
+  m_Text: "X.studio present :\n\n\n\nProject - SIO\n\n\n\nDevlopper : \nMalik D\n\n\n\nGraphics
+    :\nMalik D\n\n\nSound design :\nMalik D\n\n\nTranslate :\nMargot C\n\nSoftware
+    used :\nUnity\nBlender\nAudacity\nGithub\nDiscord\n\n\nProps used :\n\n\n\n\n\n-Special
+    thank's-\nBinouh18\nDamokless\nZef\nThecharp\nWrench\nMargot C\nGEREM\n\n\n\n"
 --- !u!222 &339785117
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2222,7 +2222,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2a99c35504c949649a433d472edc3a39, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3324,7 +3324,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5494e6e4a5660824e9a29ff356789455, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
