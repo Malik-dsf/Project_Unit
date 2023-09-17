@@ -8,6 +8,7 @@ public class StatPlayer : MonoBehaviour
 
 
     public int currentHealth = 100;
+    public GameObject player;
     public playerController playercontroller;
 
 
@@ -17,7 +18,9 @@ public class StatPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        deadPanel.SetActive(false);
+        currentHealth = 100;
+        notdead();
+
 
     }
 
@@ -28,16 +31,29 @@ public class StatPlayer : MonoBehaviour
         {
             dead();
         }
+        else
+        {
+            notdead();
+        }
+
+
+    }
+
+    void notdead()
+    {
+        deadPanel.SetActive(false);
+        player.GetComponent<playerController>().enabled = true;
 
 
     }
 
 
-
-
     void dead()
     {
         deadPanel.SetActive(true);
-        
+        player.GetComponent<playerController>().enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+
+
     }
 }
