@@ -21,16 +21,16 @@ public class WalkerAI : MonoBehaviour
     {
         agent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         Target = GameObject.Find("player").transform;
-        distance = Vector3.Distance(Target.position, transform.position);
+        //distance = Vector3.Distance(Target.position, transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {   
-        if(distance > rangeDetect)
+        /*if(distance > rangeDetect)
         {
             walkToTarget();
-        }
+        }*/
 
     }
 

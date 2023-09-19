@@ -16,6 +16,9 @@ public class PhysicsPickup : MonoBehaviour
     private float PickupRange;
     private Rigidbody CurrentObject;
 
+    public GameObject text_print;
+    public GameObject pointer_nograb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +28,18 @@ public class PhysicsPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Mouse0)){
+        Ray CameraRay1 = PlayerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        if(Physics.Raycast(CameraRay1, out RaycastHit hitInfo1, PickupRange, PickupMask))
+        {
+            text_print.SetActive(true);
+        }
+        else
+        {
+            text_print.SetActive(false);
+
+        }
+
+        if (Input.GetKeyUp(KeyCode.Mouse0)){
 
             if (CurrentObject)
             {
@@ -41,6 +55,9 @@ public class PhysicsPickup : MonoBehaviour
                 CurrentObject = hitInfo.rigidbody;
                 CurrentObject.useGravity = false;
             }
+            else
+            {
+            }
         }
 
         
@@ -49,8 +66,9 @@ public class PhysicsPickup : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (CurrentObject)
+        if(CurrentObject)
         {
+            text_print.SetActive(false);
             Vector3 DirectionToPoint = PickupTarget.position - CurrentObject.position;
             float DistanceToPoint = DirectionToPoint.magnitude;
 
