@@ -18,6 +18,7 @@ public class finishLevel : MonoBehaviour
             {
                 SceneManager.LoadScene(levelToLoad);
                 Cursor.lockState = CursorLockMode.None;
+                Time.timeScale = 1;
             }
 
 

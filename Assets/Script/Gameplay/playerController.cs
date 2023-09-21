@@ -12,6 +12,8 @@ public class playerController : MonoBehaviour
     public float walkSpeed = 7.5f;
     public float runSpeed = 10f;
 
+    public Camera cam;
+
 
     public float sencibilityX = 5f;
     [SerializeField]
@@ -62,10 +64,12 @@ public class playerController : MonoBehaviour
             if(Input.GetKey(KeyCode.LeftShift))
             {
                 Running();
+                cam.fieldOfView = 80.0f;
             }
             else
             {
                 speed = walkSpeed;
+                cam.fieldOfView = 75.0f;
             }
 
         }
