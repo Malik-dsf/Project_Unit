@@ -11518,6 +11518,10 @@ PrefabInstance:
       propertyPath: dialogues.sentences.Array.data[3]
       value: "va voir en haut ya des bruits \xE9tranges"
       objectReference: {fileID: 0}
+    - target: {fileID: 5506267691361804710, guid: 53db3e93822c09c4c91b905d9300c030, type: 3}
+      propertyPath: m_Text
+      value: Profux
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

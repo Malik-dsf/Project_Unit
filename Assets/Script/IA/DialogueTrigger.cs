@@ -16,7 +16,8 @@ public class DialogueTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isInRange && Input.GetKeyDown(KeyCode.E)){
+        if(isInRange && Input.GetKeyDown(KeyCode.E))
+        {
             TriggerDialogue();
         }
 
@@ -31,7 +32,7 @@ public class DialogueTrigger : MonoBehaviour
 
         if (isActive)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKey(KeyCode.Mouse0))
             {
                 manager.DisplayNextSentences();
                 Debug.Log("KeyDownnext");

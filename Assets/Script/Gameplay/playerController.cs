@@ -29,6 +29,8 @@ public class playerController : MonoBehaviour
     public bool lockMouse = false;
     public bool lockMouseX = false;
     public bool lockMouseY = false;
+    public bool moveActive = true;
+    public bool camActive = true;
 
 
     void Start()
@@ -50,88 +52,96 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
-        
+
         #region clavier
-        float xMov = Input.GetAxis("Horizontal");
-        float zMov = Input.GetAxis("Vertical");
-        
 
-        Vector3 moveHorizontal = transform.right * xMov;
-        Vector3 moveVertical = transform.forward * zMov;
-
-        //course
-        if(running == true){
-            if(Input.GetKey(KeyCode.LeftShift))
-            {
-                Running();
-                cam.fieldOfView = 80.0f;
-            }
-            else
-            {
-                speed = walkSpeed;
-                cam.fieldOfView = 75.0f;
-            }
-
-        }
-
-        if (jumping == true)
+        if (moveActive == true)
         {
-            if(Input.GetKeyDown(KeyCode.Space) == true) {
-                motor.jump(forceJump);
-            }
-        }
-        Vector3 velocity = (moveHorizontal + moveVertical).normalized * speed;
+            float xMov = Input.GetAxis("Horizontal");
+            float zMov = Input.GetAxis("Vertical");
 
-        motor.move(velocity);
+
+            Vector3 moveHorizontal = transform.right * xMov;
+            Vector3 moveVertical = transform.forward * zMov;
+
+            //course
+            if (running == true)
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    Running();
+                    cam.fieldOfView = 80.0f;
+                }
+                else
+                {
+                    speed = walkSpeed;
+                    cam.fieldOfView = 75.0f;
+                }
+
+            }
+
+            if (jumping == true)
+            {
+                if (Input.GetKeyDown(KeyCode.Space) == true)
+                {
+                    motor.jump(forceJump);
+                }
+            }
+            Vector3 velocity = (moveHorizontal + moveVertical).normalized * speed;
+
+            motor.move(velocity);
+        }
+        
         #endregion
 
 
         #region sourie
 
-        if(lockMouse == true)
+        if(camActive == true)
         {
-            lockMouseX = true;
-            lockMouseY = true;
+            if (lockMouse == true)
+            {
+                lockMouseX = true;
+                lockMouseY = true;
+            }
+
+
+            if (lockMouseX == true)
+            {
+                saveX = sencibilityX;
+                Debug.Log(saveX);
+                sencibilityX = 0f;
+            }
+            if(lockMouseX == false)
+            {
+                sencibilityX = saveX;
+            }
+
+            if(lockMouseY == true)
+            {
+                saveY = sencibilityY;
+                sencibilityY = 0f;
+            }
+
+            if(lockMouseY == false)
+            {
+                sencibilityY = saveY;
+            }
+
+            float yRot = Input.GetAxisRaw("Mouse X");
+
+            Vector3 rota = new Vector3(0, yRot, 0) * sencibilityX;
+            motor.rotate(rota);
+
+
+
+            float xRot = Input.GetAxisRaw("Mouse Y");
+
+            float camRotaX = xRot * sencibilityY;
+
+            motor.rotateCamera(camRotaX);
         }
         
-
-        if(lockMouseX == true)
-        {
-            saveX = sencibilityX;
-            Debug.Log(saveX);
-            sencibilityX = 0f;
-        }
-        if(lockMouseX == false){
-            sencibilityX = saveX;
-        }
-
-        if (lockMouseY == true)
-        {
-            saveY = sencibilityY;
-            sencibilityY = 0f;
-        }
-        if(lockMouseY == false)
-        {
-            sencibilityY = saveY;
-        }
-
-
-
-
-
-
-        float yRot = Input.GetAxisRaw("Mouse X");
-
-        Vector3 rota = new Vector3(0,yRot,0) * sencibilityX;
-        motor.rotate(rota);
-
-
-
-        float xRot = Input.GetAxisRaw("Mouse Y");
-
-        float camRotaX = xRot * sencibilityY;
-      
-        motor.rotateCamera(camRotaX);
         #endregion
 
 

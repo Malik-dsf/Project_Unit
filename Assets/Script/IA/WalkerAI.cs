@@ -20,7 +20,7 @@ public class WalkerAI : MonoBehaviour
     void Start()
     {
         //agent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
-        Target = GameObject.Find("player").transform;
+        
         //distance = Vector3.Distance(Target.position, transform.position);
     }
 
