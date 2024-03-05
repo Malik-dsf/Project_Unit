@@ -20,6 +20,9 @@ public class playerController : MonoBehaviour
     private float saveX = 0f;
     public float sencibilityY = 5f;
     private float saveY = 0f;
+    [SerializeField]
+    private string InputFlashlight = "F";
+    public GameObject flashlight;
 
     public float forceJump = 10;
 
@@ -59,6 +62,16 @@ public class playerController : MonoBehaviour
         {
             float xMov = Input.GetAxis("Horizontal");
             float zMov = Input.GetAxis("Vertical");
+
+
+            if (Input.GetKey(KeyCode.F))
+            {
+                flashlight.SetActive(true);
+            }
+            else
+            {
+                flashlight.SetActive(false);
+            }
 
 
             Vector3 moveHorizontal = transform.right * xMov;

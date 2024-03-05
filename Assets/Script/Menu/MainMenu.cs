@@ -20,6 +20,8 @@ public class MainMenu : MonoBehaviour
 
     void Update()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         if(PanelStart == true)
         {
             if (Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))

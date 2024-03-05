@@ -32,7 +32,7 @@ public class DialogueTrigger : MonoBehaviour
 
         if (isActive)
         {
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 manager.DisplayNextSentences();
                 Debug.Log("KeyDownnext");
@@ -57,6 +57,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             isInRange = false;
             DialogueManager.instance.EndDialogue();
+            isActive = false;
         }
     }
 
