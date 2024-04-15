@@ -35,6 +35,9 @@ public class playerController : MonoBehaviour
     public bool moveActive = true;
     public bool camActive = true;
 
+    [SerializeField]
+    private GameObject smokespeed;
+
 
     void Start()
     {
@@ -43,6 +46,7 @@ public class playerController : MonoBehaviour
         motor = GetComponent<playerMotor>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        smokespeed.SetActive(false);
 
         saveX = sencibilityX;
         Debug.Log(saveX);
@@ -82,11 +86,13 @@ public class playerController : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
+                    smokespeed.SetActive(true);
                     Running();
                     cam.fieldOfView = 80.0f;
                 }
                 else
                 {
+                    smokespeed.SetActive(false);
                     speed = walkSpeed;
                     cam.fieldOfView = 75.0f;
                 }
